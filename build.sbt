@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.13.11"
+ThisBuild / scalaVersion := "3.7.15"
 
 lazy val root = (project in file("."))
   .aggregate(exercises, answers)
@@ -8,7 +8,10 @@ lazy val root = (project in file("."))
 
 lazy val exercises = (project in file("exercises"))
   .settings(
-    name := "exercises"
+    name := "exercises",
+    libraryDependencies += "org.wvlet.airframe" %% "airspec" % "21.12.1" % Test,
+    testFrameworks += new TestFramework("wvlet.airspec.Framework"),
+    Test / parallelExecution := false
   )
 
 lazy val answers = (project in file("answers"))
