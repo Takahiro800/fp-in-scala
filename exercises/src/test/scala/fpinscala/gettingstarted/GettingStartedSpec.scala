@@ -15,4 +15,26 @@ class GettingStartedSpec extends AirSpec {
     MyModule.fib(3) shouldBe 1
     MyModule.fib(5) shouldBe 3
   }
+
+  test("isSorted") {
+    // Array[Int]
+    PolymorphicFunctions.isSorted(
+      Array[Int](),
+      (x: Int, y: Int) => x < y
+    ) shouldBe true
+    PolymorphicFunctions.isSorted(
+      Array(1, 2, 3),
+      (x: Int, y: Int) => x < y
+    ) shouldBe true
+
+    // Array[String]
+    PolymorphicFunctions.isSorted(
+      Array[String](),
+      (x: String, y: String) => x < y
+    ) shouldBe true
+    PolymorphicFunctions.isSorted(
+      Array("a", "ab", "ac"),
+      (x: String, y: String) => x < y
+    ) shouldBe true
+  }
 }
