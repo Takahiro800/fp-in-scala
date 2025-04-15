@@ -15,4 +15,13 @@ class DataStructuresSpec extends AirSpec {
     List.setHead(List(2, 3), 1) shouldBe List(1, 3)
     List.setHead(List("hoge", "fuga"), "piyo") shouldBe List("piyo", "fuga")
   }
+
+  test("drop") {
+    List.drop(Nil, 1) shouldBe Nil
+
+    val l_1to5 = List(1, 2, 3, 4, 5)
+    List.drop(l_1to5, 0) shouldBe l_1to5
+    List.drop(l_1to5, 2) shouldBe List(3, 4, 5)
+    List.drop(l_1to5, 5) shouldBe Nil
+  }
 }
