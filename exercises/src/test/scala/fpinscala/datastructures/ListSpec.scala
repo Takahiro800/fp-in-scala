@@ -9,4 +9,10 @@ class DataStructuresSpec extends AirSpec {
 
     List.tail(List("hoge", "fuga")) shouldBe List("fuga")
   }
+
+  test("setHead") {
+    List.setHead(Nil, 1) shouldBe List(1)
+    List.setHead(List(2, 3), 1) shouldBe List(1, 3)
+    List.setHead(List("hoge", "fuga"), "piyo") shouldBe List("piyo", "fuga")
+  }
 }
