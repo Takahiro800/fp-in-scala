@@ -24,4 +24,13 @@ class DataStructuresSpec extends AirSpec {
     List.drop(l_1to5, 2) shouldBe List(3, 4, 5)
     List.drop(l_1to5, 5) shouldBe Nil
   }
+
+  test("dropWhile") {
+    List.dropWhile(Nil, (x: Int) => x < 0) shouldBe Nil
+
+    val l_1to5 = List(1, 2, 3, 4, 5)
+    List.dropWhile(l_1to5, (x: Int) => x > 0) shouldBe Nil
+    List.dropWhile(l_1to5, (x: Int) => x < 2) shouldBe List(2, 3, 4, 5)
+    List.dropWhile(l_1to5, (x: Int) => x % 2 == 0) shouldBe l_1to5
+  }
 }
