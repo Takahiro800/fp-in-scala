@@ -199,4 +199,23 @@ class DataStructuresSpec extends AirSpec {
       List.flatMap2(nums)(i => List(i, i)) shouldBe expects
     }
   }
+
+  test("addPairwise") {
+    val a = List(1, 2, 3)
+    val b = List(4, 5, 6)
+
+    List.addPairwise(a, b) shouldBe List(5, 7, 9)
+
+    test("a is shorter than b") {
+      List.addPairwise(List(1), a) shouldBe List(2)
+    }
+
+    test("a.length is smaller than b.length") {
+      List.addPairwise(List(1), b) shouldBe List(5)
+    }
+
+    test("a.length is larger than b.length") {
+      List.addPairwise(a, List(1)) shouldBe List(2)
+    }
+  }
 }
