@@ -38,4 +38,19 @@ class DataStructuresSpec extends AirSpec {
     val l_1to5 = List(1, 2, 3, 4, 5)
     List.init(l_1to5) shouldBe List(1, 2, 3, 4)
   }
+
+  test("length") {
+    test("should return 0 for an empty list") {
+      List.length(Nil) shouldBe 0
+    }
+
+    test("should return the correct length for a non-empty list") {
+      List.length(List(1, 2, 3)) shouldBe 3
+      List.length(List("a", "b", "c", "d")) shouldBe 4
+    }
+
+    test("should handle a single-element list") {
+      List.length(List(42)) shouldBe 1
+    }
+  }
 }
