@@ -130,4 +130,22 @@ class DataStructuresSpec extends AirSpec {
       List.reverse(List(1, 2, 3)) shouldBe List(3, 2, 1)
     }
   }
+
+  test("appendByFoldRight") {
+    val l1 = List(1, 2, 3)
+    val l2 = List(4, 5, 6)
+    val nil: List[Int] = Nil
+
+    test("when l1 is empty") {
+      List.appendByFoldRight(nil, l2) shouldBe l2
+    }
+
+    test("when l2 is empty") {
+      List.appendByFoldRight(l1, nil) shouldBe l1
+    }
+
+    test("when simple") {
+      List.appendByFoldRight(l1, l2) shouldBe List.append(l1, l2)
+    }
+  }
 }

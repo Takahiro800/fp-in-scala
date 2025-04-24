@@ -143,5 +143,10 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
+  // exercise 3.14
+  def appendByFoldRight[A](l1: List[A], l2: List[A]): List[A] = {
+    foldRight(l1, l2)(Cons(_, _))
+  }
+
   def map[A, B](l: List[A])(f: A => B): List[B] = ???
 }
