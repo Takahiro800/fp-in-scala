@@ -191,4 +191,10 @@ class DataStructuresSpec extends AirSpec {
       List.flatMap2(nums)(i => List(i, i)) shouldBe expects
     }
   }
+
+  test("fliterByFlatMap") {
+    val nums = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    val odds = List(1, 3, 5, 7, 9)
+    List.filterByFlatMap(nums)(_ % 2 != 0) shouldBe odds
+  }
 }
