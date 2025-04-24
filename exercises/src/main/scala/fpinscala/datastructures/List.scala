@@ -125,5 +125,16 @@ object List { // `List` companion object. Contains functions for creating and wo
     scalaList.foldRight(Nil: List[A])((elem, acc) => Cons(elem, acc))
   }
 
+  // exercise 3.11
+  def sumByFoldLeft(nums: List[Int]) = {
+    foldLeft(nums, 0)((sum, num) => sum + num)
+  }
+
+  // exercise 3.11
+  def productByFoldLeft(nums: List[Int]) = foldLeft(nums, 1)(_ * _)
+
+  // exercise 3.11
+  def lengthByFoldLeft(nums: List[Int]) = foldLeft(nums, 0)((acc, _) => acc + 1)
+
   def map[A, B](l: List[A])(f: A => B): List[B] = ???
 }

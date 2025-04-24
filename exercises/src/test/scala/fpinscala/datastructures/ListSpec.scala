@@ -75,5 +75,49 @@ class DataStructuresSpec extends AirSpec {
       val largeList = List.fromScalaList(scala.List.fill(100000)(1))
       List.foldLeft(largeList, 0)(_ + _) shouldBe 100000
     }
+
+    test("sumByFoldLeft") {
+      test("empty List") {
+        List.lengthByFoldLeft(Nil) shouldBe 0
+      }
+
+      test("simple List") {
+        List.sumByFoldLeft(List(1, 2, 3, 4)) shouldBe 10
+      }
+
+      test("large List") {
+        val largeList = List.fromScalaList(scala.List.fill(1000000)(1))
+        List.sumByFoldLeft(largeList) shouldBe 1000000
+      }
+    }
+
+    test("productByFoldLeft") {
+      test("empty List") {
+        List.productByFoldLeft(Nil) shouldBe 1
+      }
+
+      test("simple List") {
+        List.productByFoldLeft(List(1, 2, 3, 4)) shouldBe 24
+      }
+
+      test("large List") {
+        val largeList = List.fromScalaList(scala.List.fill(1000000)(1))
+        List.productByFoldLeft(largeList) shouldBe 1
+      }
+    }
+
+    test("lengthByFoldLeft") {
+      test("empty List") {
+        List.lengthByFoldLeft(Nil) shouldBe 0
+      }
+      test("simple List") {
+        List.lengthByFoldLeft(List(1, 2, 3, 4)) shouldBe 4
+      }
+
+      test("large List") {
+        val largeList = List.fromScalaList(scala.List.fill(1000000)(1))
+        List.lengthByFoldLeft(largeList) shouldBe 1000000
+      }
+    }
   }
 }
