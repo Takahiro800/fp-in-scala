@@ -165,4 +165,12 @@ class DataStructuresSpec extends AirSpec {
   test("doubleToString") {
     List.doubleToString(List(1.0, 2.1, 3)) shouldBe List("1.0", "2.1", "3.0")
   }
+
+  test("map") {
+    val doubles = List(1.0, 2.1, 3)
+    val strings = List("1.0", "2.1", "3.0")
+
+    List.map(doubles)(_.toString) shouldBe strings
+    List.doubleToString(doubles) shouldBe strings
+  }
 }
