@@ -120,4 +120,14 @@ class DataStructuresSpec extends AirSpec {
       }
     }
   }
+
+  test("reverse") {
+    test("when empty") {
+      List.reverse(Nil) shouldBe Nil
+    }
+
+    test("when simple List") {
+      List.reverse(List(1, 2, 3)) shouldBe List(3, 2, 1)
+    }
+  }
 }

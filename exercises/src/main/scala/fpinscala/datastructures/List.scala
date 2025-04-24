@@ -44,14 +44,12 @@ object List { // `List` companion object. Contains functions for creating and wo
       case Cons(h, t) => Cons(h, append(t, a2))
     }
 
-  def foldRight[A, B](
-      as: List[A],
-      z: B
-  )(f: (A, B) => B): B = // Utility functions
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = {
     as match {
       case Nil         => z
       case Cons(x, xs) => f(x, foldRight(xs, z)(f))
     }
+  }
 
   def sum2(ns: List[Int]) =
     foldRight(ns, 0)((x, y) => x + y)
@@ -135,6 +133,15 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   // exercise 3.11
   def lengthByFoldLeft(nums: List[Int]) = foldLeft(nums, 0)((acc, _) => acc + 1)
+
+  // exercise 3.12
+  def reverse[A](l: List[A]): List[A] = {
+    l match {
+      case Nil => Nil
+      case Cons(_, _) =>
+        foldLeft(l, Nil: List[A])((acc, a) => Cons(a, acc))
+    }
+  }
 
   def map[A, B](l: List[A])(f: A => B): List[B] = ???
 }
