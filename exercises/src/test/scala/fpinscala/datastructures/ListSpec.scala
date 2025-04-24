@@ -178,4 +178,9 @@ class DataStructuresSpec extends AirSpec {
     val nums = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     List.filter(nums)(_ % 2 != 0) shouldBe List(1, 3, 5, 7, 9)
   }
+
+  test("faltMap") {
+    val nums = List(1, 2, 3)
+    List.flatMap(nums)(i => List(i, i)) shouldBe List(1, 1, 2, 2, 3, 3)
+  }
 }
