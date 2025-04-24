@@ -148,4 +148,12 @@ class DataStructuresSpec extends AirSpec {
       List.appendByFoldRight(l1, l2) shouldBe List.append(l1, l2)
     }
   }
+
+  test("concat") {
+    val l1 = List(1, 2, 3)
+    val l2 = List(4, 5, 6)
+    val l3 = List(7, 8, 9)
+
+    List.concat(List(l1, l2, l3)) shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  }
 }
