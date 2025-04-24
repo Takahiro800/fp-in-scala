@@ -173,4 +173,9 @@ class DataStructuresSpec extends AirSpec {
     List.map(doubles)(_.toString) shouldBe strings
     List.doubleToString(doubles) shouldBe strings
   }
+
+  test("filter") {
+    val nums = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    List.filter(nums)(_ % 2 != 0) shouldBe List(1, 3, 5, 7, 9)
+  }
 }
