@@ -181,6 +181,14 @@ class DataStructuresSpec extends AirSpec {
 
   test("faltMap") {
     val nums = List(1, 2, 3)
-    List.flatMap(nums)(i => List(i, i)) shouldBe List(1, 1, 2, 2, 3, 3)
+    val expects = List(1, 1, 2, 2, 3, 3)
+
+    test("original") {
+      List.flatMap(nums)(i => List(i, i)) shouldBe expects
+    }
+
+    test("version2") {
+      List.flatMap2(nums)(i => List(i, i)) shouldBe expects
+    }
   }
 }

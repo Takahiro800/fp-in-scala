@@ -179,4 +179,9 @@ object List { // `List` companion object. Contains functions for creating and wo
       appendByFoldRight(f(element), list)
     )
   }
+
+  // exercise 3.20-2
+  def flatMap2[A, B](as: List[A])(f: A => List[B]): List[B] = {
+    concat(map(as)(f))
+  }
 }
