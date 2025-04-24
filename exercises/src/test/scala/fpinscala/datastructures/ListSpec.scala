@@ -53,4 +53,27 @@ class DataStructuresSpec extends AirSpec {
       List.length(List(42)) shouldBe 1
     }
   }
+
+  test("foldLeft") {
+    test("should return the initial value for an empty list") {
+      List.foldLeft(Nil: List[Int], 0)(_ + _) shouldBe 0
+    }
+
+    test("should correctly sum elements of a list") {
+      List.foldLeft(List(1, 2, 3, 4), 0)(_ + _) shouldBe 10
+    }
+
+    test("should correctly multiply elements of a list") {
+      List.foldLeft(List(1, 2, 3, 4), 1)(_ * _) shouldBe 24
+    }
+
+    test("should handle string concatenation") {
+      List.foldLeft(List("a", "b", "c"), "")(_ + _) shouldBe "abc"
+    }
+
+    test("should be tail-recursive for large lists") {
+      val largeList = List.fromScalaList(scala.List.fill(100000)(1))
+      List.foldLeft(largeList, 0)(_ + _) shouldBe 100000
+    }
+  }
 }

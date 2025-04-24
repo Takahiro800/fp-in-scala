@@ -35,7 +35,7 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Nil                                   => 42
     case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
     case Cons(h, t)                            => h + sum(t)
-    case _                                     => 101
+    // case _                                     => 101
   }
 
   def append[A](a1: List[A], a2: List[A]): List[A] =
@@ -111,7 +111,19 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(l, 0)((_, acc: Int) => acc + 1)
   }
 
-  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = ???
+  // exercise 3.10
+  @annotation.tailrec
+  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
+    l match {
+      case Nil        => z
+      case Cons(h, t) => foldLeft(t, f(z, h))(f)
+    }
+  }
+
+  // for test exercise 3.10
+  def fromScalaList[A](scalaList: scala.List[A]): List[A] = {
+    scalaList.foldRight(Nil: List[A])((elem, acc) => Cons(elem, acc))
+  }
 
   def map[A, B](l: List[A])(f: A => B): List[B] = ???
 }
