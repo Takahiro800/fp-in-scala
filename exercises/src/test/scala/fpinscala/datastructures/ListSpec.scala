@@ -176,7 +176,15 @@ class DataStructuresSpec extends AirSpec {
 
   test("filter") {
     val nums = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    List.filter(nums)(_ % 2 != 0) shouldBe List(1, 3, 5, 7, 9)
+    val odds = List(1, 3, 5, 7, 9)
+
+    test("original") {
+      List.filter(nums)(_ % 2 != 0) shouldBe odds
+    }
+
+    test("version flatMap") {
+      List.filterByFlatMap(nums)(_ % 2 != 0) shouldBe odds
+    }
   }
 
   test("faltMap") {
@@ -190,11 +198,5 @@ class DataStructuresSpec extends AirSpec {
     test("version2") {
       List.flatMap2(nums)(i => List(i, i)) shouldBe expects
     }
-  }
-
-  test("fliterByFlatMap") {
-    val nums = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    val odds = List(1, 3, 5, 7, 9)
-    List.filterByFlatMap(nums)(_ % 2 != 0) shouldBe odds
   }
 }
