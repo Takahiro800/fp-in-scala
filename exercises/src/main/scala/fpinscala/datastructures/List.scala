@@ -158,5 +158,10 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(l, Nil: List[Int])((num, list) => Cons(num + 1, list))
   }
 
+  // exercise 3.17
+  def doubleToString(l: List[Double]): List[String] = {
+    foldRight(l, Nil: List[String])((d, list) => Cons(d.toString, list))
+  }
+
   def map[A, B](l: List[A])(f: A => B): List[B] = ???
 }
