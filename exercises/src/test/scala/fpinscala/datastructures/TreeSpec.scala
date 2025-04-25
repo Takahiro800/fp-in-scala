@@ -48,4 +48,18 @@ class TreeSpec extends AirSpec {
       Tree.depth(tree) shouldBe 2
     }
   }
+
+  test("map") {
+    test("when only single leaf") {
+      Tree.map(leaf)(_ + 1) shouldBe Leaf(leaf.value + 1)
+    }
+
+    test("when 1 branch and 2 leaves") {
+      Tree.map(branch)(_ * 2) shouldBe Branch(Leaf(2), Leaf(4))
+    }
+
+    test("when 2 depth") {
+      Tree.map(tree)(_ - 1) shouldBe Branch(Branch(Leaf(0), Leaf(1)), Leaf(2))
+    }
+  }
 }
