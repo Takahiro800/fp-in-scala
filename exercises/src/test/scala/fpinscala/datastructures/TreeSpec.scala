@@ -16,7 +16,7 @@ class TreeSpec extends AirSpec {
       Tree.size(branch) shouldBe 3
     }
 
-    test("when 3 depth") {
+    test("when 2 depth") {
       Tree.size(tree) shouldBe 5
     }
   }
@@ -30,8 +30,22 @@ class TreeSpec extends AirSpec {
       Tree.maximum(branch) shouldBe 2
     }
 
-    test("when 3 depth") {
+    test("when 2 depth") {
       Tree.maximum(tree) shouldBe 3
+    }
+  }
+
+  test("depth") {
+    test("when only single leaf") {
+      Tree.depth(leaf) shouldBe 0
+    }
+
+    test("when 1 branch and 2 leaves") {
+      Tree.depth(branch) shouldBe 1
+    }
+
+    test("when 2 depth") {
+      Tree.depth(tree) shouldBe 2
     }
   }
 }
