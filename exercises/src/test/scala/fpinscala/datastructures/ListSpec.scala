@@ -233,4 +233,28 @@ class DataStructuresSpec extends AirSpec {
       List.zipWith(List(1), b)(_ + _) shouldBe List(5)
     }
   }
+
+  test("hasSubsequence") {
+    val sup = List(1, 2, 3, 4, 5, 6)
+
+    test("sub is Nil") {
+      val sub = Nil: List[Int]
+      List.hasSubsequence(sup, sub) shouldBe true
+    }
+
+    test("sub List(1,2,3)") {
+      val sub = List(1, 2, 3)
+      List.hasSubsequence(sup, sub) shouldBe true
+    }
+
+    test("sub List(1,3)") {
+      val sub = List(1, 3)
+      List.hasSubsequence(sup, sub) shouldBe false
+    }
+
+    test("sub List(10)") {
+      val sub = List(10)
+      List.hasSubsequence(sup, sub) shouldBe false
+    }
+  }
 }
