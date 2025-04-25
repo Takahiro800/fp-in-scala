@@ -204,7 +204,9 @@ class DataStructuresSpec extends AirSpec {
     val a = List(1, 2, 3)
     val b = List(4, 5, 6)
 
-    List.addPairwise(a, b) shouldBe List(5, 7, 9)
+    test("when length is same") {
+      List.addPairwise(a, b) shouldBe List(5, 7, 9)
+    }
 
     test("a is shorter than b") {
       List.addPairwise(List(1), a) shouldBe List(2)
@@ -213,9 +215,22 @@ class DataStructuresSpec extends AirSpec {
     test("a.length is smaller than b.length") {
       List.addPairwise(List(1), b) shouldBe List(5)
     }
+  }
 
-    test("a.length is larger than b.length") {
-      List.addPairwise(a, List(1)) shouldBe List(2)
+  test("zipWith") {
+    val a = List(1, 2, 3)
+    val b = List(4, 5, 6)
+
+    test("when length is same") {
+      List.zipWith(a, b)(_ + _) shouldBe List(5, 7, 9)
+    }
+
+    test("a is shorter than b") {
+      List.zipWith(List(1), a)(_ + _) shouldBe List(2)
+    }
+
+    test("a.length is smaller than b.length") {
+      List.zipWith(List(1), b)(_ + _) shouldBe List(5)
     }
   }
 }
