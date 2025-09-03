@@ -6,6 +6,7 @@ import scala.{
   Either => _,
   _
 } // hide std library `Option`, `Some` and `Either`, since we are writing our own in this chapter
+import scala.annotation.tailrec
 
 sealed trait Option[+A] {
   def map[B](f: A => B): Option[B] = this match {
@@ -87,7 +88,17 @@ object Option {
     a.flatMap { va => b.map(vb => f(va, vb)) }
   }
 
-  def sequence[A](a: List[Option[A]]): Option[List[A]] = ???
+  // exercise 4.4
+  def sequence[A](a: List[Option[A]]): Option[List[A]] = {
+    a match {
+      case Nil    => Some(Nil)
+      case h :: t => h.flatMap(vh => sequence(t).map(vh :: _))
+    }
+  }
+
+  def sequence_1[A](a: List[Option[A]]): Option[List[A]] = {
+    a.foldRight[Option[List[A]]](Some(Nil))((x, y) => map2(x, y)(_ :: _))
+  }
 
   def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
 }
