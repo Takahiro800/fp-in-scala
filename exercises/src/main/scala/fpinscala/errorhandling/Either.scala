@@ -8,14 +8,40 @@ import scala.{
   _
 } // hide std library `Option` and `Either`, since we are writing our own in this chapter
 
+// exercise 4.6
 sealed trait Either[+E, +A] {
-  def map[B](f: A => B): Either[E, B] = ???
+  def map[B](f: A => B): Either[E, B] = {
+    this match {
+      case Right(a) => Right(f(a))
+      case Left(e)  => Left(e)
+    }
+  }
 
-  def flatMap[EE >: E, B](f: A => Either[EE, B]): Either[EE, B] = ???
+  def flatMap[EE >: E, B](f: A => Either[EE, B]): Either[EE, B] = {
+    this match {
+      case Right(a) => f(a)
+      case Left(e)  => Left(e)
+    }
+  }
 
-  def orElse[EE >: E, B >: A](b: => Either[EE, B]): Either[EE, B] = ???
+  // NOTE: (b: => Either[])は遅延評価を表す
+  def orElse[EE >: E, B >: A](b: => Either[EE, B]): Either[EE, B] = {
+    this match {
+      case Right(a) => Right(a)
+      case Left(_)  => b
+    }
+  }
 
-  def map2[EE >: E, B, C](b: Either[EE, B])(f: (A, B) => C): Either[EE, C] = ???
+  def map2[EE >: E, B, C](b: Either[EE, B])(f: (A, B) => C): Either[EE, C] = {
+    this.flatMap(a => b.map(b1 => f(a, b1)))
+  }
+
+  def map2_2[EE >: E, B, C](b: Either[EE, B])(f: (A, B) => C): Either[EE, C] = {
+    for {
+      a <- this
+      b1 <- b
+    } yield f(a, b1)
+  }
 }
 case class Left[+E](get: E) extends Either[E, Nothing]
 case class Right[+A](get: A) extends Either[Nothing, A]
@@ -41,4 +67,3 @@ object Either {
     catch { case e: Exception => Left(e) }
 
 }
-
