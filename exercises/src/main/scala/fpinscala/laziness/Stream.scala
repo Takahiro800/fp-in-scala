@@ -22,6 +22,23 @@ trait Stream[+A] {
       p(a) || b
     ) // Here `b` is the unevaluated recursive step that folds the tail of the stream. If `p(a)` returns `true`, `b` will never be evaluated and the computation terminates early.
 
+  // exercise 5.1
+  def toListRecursive: List[A] = this match {
+    case Cons(h, t) =>
+      h() :: t().toListRecursive
+    case _ => List()
+  }
+
+  def toList: List[A] = {
+    @annotation.tailrec
+    def go(s: Stream[A], acc: List[A]): List[A] = s match {
+      case Cons(h, t) => go(t(), h() :: acc)
+      case _          => acc
+    }
+
+    go(this, List()).reverse
+  }
+
   @annotation.tailrec
   final def find(f: A => Boolean): Option[A] = this match {
     case Empty      => None
@@ -63,4 +80,3 @@ object Stream {
 
   def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = ???
 }
-
